@@ -10,27 +10,29 @@ export default function BlogPage() {
     .filter((p) => p.category === "blog")
     .filter((p) => isAdmin || p.published);
 
+  const [featured, ...rest] = articles;
+
   return (
-    <div className="max-w-6xl mx-auto px-6">
+    <div className="bg-white">
       {/* Header */}
-      <section className="pt-20 pb-12 border-b border-[#1a1a1a]">
-        <p className="text-xs tracking-[0.2em] uppercase text-[#c8a96e] mb-6">
-          Journal
-        </p>
+      <section className="pt-12 pb-12 px-4 sm:px-6 max-w-7xl mx-auto border-b border-gray-100">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <h1 className="text-4xl font-semibold tracking-[-0.03em] text-[#ededed] mb-3">
-              Thinking & Writing
+            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#FF5C28] mb-3">
+              Ideas & Thinking
+            </p>
+            <h1 className="font-display text-5xl font-black tracking-tight text-gray-900">
+              Journal
             </h1>
-            <p className="text-sm text-[#555] max-w-md">
-              Essays, observations, and research from the studio on architecture,
-              urbanism, and material culture.
+            <p className="text-gray-500 mt-3 max-w-md">
+              Essays, research, and observations from the studio on architecture,
+              materials, climate, and Vietnamese urbanism.
             </p>
           </div>
           {isAdmin && (
             <Link
               href="/admin/posts/new?category=blog"
-              className="text-xs tracking-widest uppercase border border-[#c8a96e] text-[#c8a96e] px-4 py-2 hover:bg-[#c8a96e] hover:text-[#0a0a0a] transition-all self-start"
+              className="inline-flex items-center gap-2 bg-[#FF5C28] text-white text-sm font-bold px-6 py-3 rounded-full hover:bg-orange-600 transition-colors self-start"
             >
               + New Article
             </Link>
@@ -38,82 +40,110 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* Articles */}
-      <div className="py-8">
-        {articles.length === 0 ? (
-          <p className="text-sm text-[#444] py-12">No articles published yet.</p>
-        ) : (
-          <div className="space-y-0">
-            {articles.map((article) => (
-              <div
-                key={article.id}
-                className="border-b border-[#1a1a1a] group"
+      {articles.length === 0 ? (
+        <div className="max-w-7xl mx-auto px-6 py-20 text-center">
+          <p className="text-gray-400 text-lg">No articles published yet.</p>
+        </div>
+      ) : (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+          {/* Featured article */}
+          {featured && (
+            <div className="mb-12">
+              <Link
+                href={`/blog/${featured.slug}`}
+                className="group grid md:grid-cols-2 gap-8 bg-gray-50 rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300"
               >
-                <Link
-                  href={`/blog/${article.slug}`}
-                  className="flex flex-col md:flex-row md:items-baseline gap-4 py-8 hover:bg-[#0d0d0d] transition-colors px-2"
+                <div
+                  className={`aspect-[4/3] md:aspect-auto bg-gradient-to-br ${featured.coverGradient} min-h-[280px]`}
+                />
+                <div className="p-8 md:py-12 flex flex-col justify-center">
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {featured.tags.map((tag) => (
+                      <span key={tag} className="tag-pill">{tag}</span>
+                    ))}
+                    {!featured.published && isAdmin && (
+                      <span className="tag-pill bg-yellow-100 text-yellow-700">Draft</span>
+                    )}
+                  </div>
+                  <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-4 group-hover:text-[#FF5C28] transition-colors leading-tight">
+                    {featured.title}
+                  </h2>
+                  <p className="text-gray-500 leading-relaxed mb-6">{featured.excerpt}</p>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3 text-sm text-gray-400">
+                      <span className="font-medium text-gray-600">{featured.author}</span>
+                      <span>·</span>
+                      <span>{featured.publishedAt}</span>
+                    </div>
+                    <span className="text-sm font-bold text-[#FF5C28] group-hover:underline">
+                      Read →
+                    </span>
+                  </div>
+                  {isAdmin && (
+                    <div
+                      className="flex gap-4 mt-4 pt-4 border-t border-gray-200"
+                      onClick={(e) => e.preventDefault()}
+                    >
+                      <Link href={`/admin/posts/${featured.id}/edit`} className="text-xs text-gray-400 hover:text-gray-700">Edit</Link>
+                      <button onClick={() => togglePublish(featured.id)} className="text-xs text-gray-400 hover:text-[#FF5C28]">
+                        {featured.published ? "Unpublish" : "Publish"}
+                      </button>
+                      <button onClick={() => { if(confirm("Delete?")) deletePost(featured.id); }} className="text-xs text-gray-400 hover:text-red-500">Delete</button>
+                    </div>
+                  )}
+                </div>
+              </Link>
+            </div>
+          )}
+
+          {/* Rest of articles */}
+          {rest.length > 0 && (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {rest.map((article) => (
+                <div
+                  key={article.id}
+                  className="group bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5"
                 >
-                  <span className="text-xs text-[#333] w-24 shrink-0">
-                    {article.publishedAt}
-                  </span>
-                  <div className="flex-1">
-                    <div className="flex items-start gap-3 mb-2">
-                      <h3 className="text-base font-medium text-[#ededed] group-hover:text-[#c8a96e] transition-colors">
+                  <Link href={`/blog/${article.slug}`}>
+                    <div
+                      className={`aspect-[16/9] bg-gradient-to-br ${article.coverGradient}`}
+                    />
+                    <div className="p-6">
+                      <div className="flex flex-wrap gap-2 mb-3">
+                        {article.tags.map((tag) => (
+                          <span key={tag} className="tag-pill">{tag}</span>
+                        ))}
+                        {!article.published && isAdmin && (
+                          <span className="tag-pill bg-yellow-100 text-yellow-700">Draft</span>
+                        )}
+                      </div>
+                      <h3 className="font-bold text-gray-900 mb-2 group-hover:text-[#FF5C28] transition-colors leading-snug">
                         {article.title}
                       </h3>
-                      {!article.published && isAdmin && (
-                        <span className="text-xs bg-[#2a1a1a] text-[#c84e4e] px-2 py-0.5 shrink-0 self-start">
-                          Draft
-                        </span>
-                      )}
+                      <p className="text-sm text-gray-500 line-clamp-2 leading-relaxed mb-4">
+                        {article.excerpt}
+                      </p>
+                      <div className="flex items-center justify-between text-xs text-gray-400">
+                        <span className="font-medium">{article.author}</span>
+                        <span>{article.publishedAt}</span>
+                      </div>
                     </div>
-                    <p className="text-sm text-[#555] leading-relaxed line-clamp-2">
-                      {article.excerpt}
-                    </p>
-                    <div className="flex flex-wrap gap-2 mt-3">
-                      {article.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="text-xs tracking-widest uppercase text-[#333]"
-                        >
-                          {tag}
-                        </span>
-                      ))}
+                  </Link>
+                  {isAdmin && (
+                    <div className="flex gap-4 px-6 pb-4 border-t border-gray-100 pt-3">
+                      <Link href={`/admin/posts/${article.id}/edit`} className="text-xs text-gray-400 hover:text-gray-700">Edit</Link>
+                      <button onClick={() => togglePublish(article.id)} className="text-xs text-gray-400 hover:text-[#FF5C28]">
+                        {article.published ? "Unpublish" : "Publish"}
+                      </button>
+                      <button onClick={() => { if(confirm("Delete?")) deletePost(article.id); }} className="text-xs text-gray-400 hover:text-red-500">Delete</button>
                     </div>
-                  </div>
-                  <span className="text-xs text-[#333] group-hover:text-[#555] transition-colors shrink-0 hidden md:block">
-                    Read →
-                  </span>
-                </Link>
-                {isAdmin && (
-                  <div className="flex gap-4 pb-4 px-2">
-                    <Link
-                      href={`/admin/posts/${article.id}/edit`}
-                      className="text-xs text-[#444] hover:text-[#888] transition-colors"
-                    >
-                      Edit
-                    </Link>
-                    <button
-                      onClick={() => togglePublish(article.id)}
-                      className="text-xs text-[#444] hover:text-[#c8a96e] transition-colors"
-                    >
-                      {article.published ? "Unpublish" : "Publish"}
-                    </button>
-                    <button
-                      onClick={() => {
-                        if (confirm("Delete this article?")) deletePost(article.id);
-                      }}
-                      className="text-xs text-[#444] hover:text-[#c84e4e] transition-colors"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
