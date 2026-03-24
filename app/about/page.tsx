@@ -96,7 +96,7 @@ export default function AboutPage() {
 
         <div className="grid lg:grid-cols-2 gap-16 items-end">
           <div>
-            <h1 className="text-5xl sm:text-6xl font-black tracking-tight text-gray-900 leading-[1.05] mb-6">
+            <h1 className="font-display text-5xl sm:text-6xl font-black tracking-tight text-gray-900 leading-[1.05] mb-6">
               Architecture
               <br />
               through the{" "}
@@ -125,7 +125,7 @@ export default function AboutPage() {
           <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#FF5C28] mb-3">
             Philosophy
           </p>
-          <h2 className="text-3xl font-black tracking-tight text-gray-900 mb-12">
+          <h2 className="font-display text-3xl font-black tracking-tight text-gray-900 mb-12">
             How we think about design.
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -149,7 +149,7 @@ export default function AboutPage() {
           <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#FF5C28] mb-3">
             People
           </p>
-          <h2 className="text-3xl font-black tracking-tight text-gray-900 mb-12">
+          <h2 className="font-display text-3xl font-black tracking-tight text-gray-900 mb-12">
             The team behind the work.
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -182,7 +182,7 @@ export default function AboutPage() {
           <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#FF5C28] mb-3">
             Recognition
           </p>
-          <h2 className="text-3xl font-black tracking-tight text-gray-900 mb-12">
+          <h2 className="font-display text-3xl font-black tracking-tight text-gray-900 mb-12">
             Awards & Honours
           </h2>
           <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
@@ -236,7 +236,7 @@ export default function AboutPage() {
       {/* Contact strip */}
       <section className="bg-gray-900 py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-4xl font-black text-white mb-4">
+          <h2 className="font-display text-4xl font-black text-white mb-4">
             Let's work together.
           </h2>
           <p className="text-gray-400 mb-8 max-w-md mx-auto">

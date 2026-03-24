@@ -64,7 +64,7 @@ export default function HomePage() {
               </span>
             </div>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight text-gray-900 leading-[1.0] mb-6">
+            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight text-gray-900 leading-[1.0] mb-6">
               We shape{" "}
               <span className="relative">
                 <span className="text-[#FF5C28]">spaces</span>
@@ -165,7 +165,7 @@ export default function HomePage() {
               <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#FF5C28] mb-3">
                 Selected Work
               </p>
-              <h2 className="text-4xl font-black tracking-tight text-gray-900">
+              <h2 className="font-display text-4xl font-black tracking-tight text-gray-900">
                 Recent Projects
               </h2>
             </div>
@@ -241,7 +241,7 @@ export default function HomePage() {
               <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#FF5C28] mb-3">
                 What We Do
               </p>
-              <h2 className="text-4xl font-black tracking-tight text-gray-900 mb-6">
+              <h2 className="font-display text-4xl font-black tracking-tight text-gray-900 mb-6">
                 Full-spectrum
                 <br />
                 design services.
@@ -286,7 +286,7 @@ export default function HomePage() {
               <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#FF5C28] mb-3">
                 Thinking
               </p>
-              <h2 className="text-4xl font-black tracking-tight text-gray-900">
+              <h2 className="font-display text-4xl font-black tracking-tight text-gray-900">
                 From the Journal
               </h2>
             </div>

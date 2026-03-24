@@ -31,7 +31,7 @@ export default function ProjectsPage() {
             <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#FF5C28] mb-3">
               Portfolio
             </p>
-            <h1 className="text-5xl font-black tracking-tight text-gray-900">
+            <h1 className="font-display text-5xl font-black tracking-tight text-gray-900">
               Our Projects
             </h1>
           </div>

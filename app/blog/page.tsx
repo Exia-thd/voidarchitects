@@ -21,7 +21,7 @@ export default function BlogPage() {
             <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#FF5C28] mb-3">
               Ideas & Thinking
             </p>
-            <h1 className="text-5xl font-black tracking-tight text-gray-900">
+            <h1 className="font-display text-5xl font-black tracking-tight text-gray-900">
               Journal
             </h1>
             <p className="text-gray-500 mt-3 max-w-md">

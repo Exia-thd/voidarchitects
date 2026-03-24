@@ -10,7 +10,7 @@ export default function Footer() {
             <p className="text-xs font-bold tracking-[0.2em] uppercase text-orange-100 mb-2">
               Start a project
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight">
               Have a vision?
               <br />
               Let's build it together.

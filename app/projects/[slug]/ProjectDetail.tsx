@@ -70,7 +70,7 @@ export default function ProjectDetail({ slug }: Props) {
                 </span>
               )}
             </div>
-            <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
+            <h1 className="font-display text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
               {project.title}
             </h1>
           </div>

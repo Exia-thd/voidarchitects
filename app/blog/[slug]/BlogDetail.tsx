@@ -74,7 +74,7 @@ export default function BlogDetail({ slug }: Props) {
           )}
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 leading-[1.1] mb-6">
+        <h1 className="font-display text-4xl md:text-5xl font-black tracking-tight text-gray-900 leading-[1.1] mb-6">
           {article.title}
         </h1>
 
