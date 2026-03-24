@@ -1,6 +1,18 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { persist, createJSONStorage } from "zustand/middleware";
 import { Post, defaultPosts } from "./posts";
+
+// Safe storage: returns a no-op storage during SSR/SSG, real localStorage on client
+const safeLocalStorage = createJSONStorage(() => {
+  if (typeof window === "undefined") {
+    return {
+      getItem: () => null,
+      setItem: () => {},
+      removeItem: () => {},
+    };
+  }
+  return localStorage;
+});
 
 interface AdminState {
   isAdmin: boolean;
@@ -66,6 +78,7 @@ export const useStore = create<AdminState>()(
     }),
     {
       name: "voidarchitects-store",
+      storage: safeLocalStorage,
       partialize: (state) => ({ posts: state.posts, isAdmin: false }),
     }
   )
