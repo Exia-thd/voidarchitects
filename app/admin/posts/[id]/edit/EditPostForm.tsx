@@ -28,6 +28,11 @@ export default function EditPostForm({ id }: Props) {
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
 
+  // Redirect to admin login if not authenticated (must be in useEffect — router.replace uses window.location)
+  useEffect(() => {
+    if (!isAdmin) router.replace("/admin");
+  }, [isAdmin, router]);
+
   useEffect(() => {
     if (post) {
       setForm({
@@ -43,7 +48,7 @@ export default function EditPostForm({ id }: Props) {
     }
   }, [post]);
 
-  if (!isAdmin) { router.replace("/admin"); return null; }
+  if (!isAdmin) { return null; }
 
   if (!post || !form) {
     return (

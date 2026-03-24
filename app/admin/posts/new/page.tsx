@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, Suspense } from "react";
+import { useState, Suspense, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useStore } from "@/lib/store";
@@ -24,10 +24,11 @@ function NewPostForm() {
   });
   const [saving, setSaving] = useState(false);
 
-  if (!isAdmin) {
-    router.replace("/admin");
-    return null;
-  }
+  useEffect(() => {
+    if (!isAdmin) router.replace("/admin");
+  }, [isAdmin, router]);
+
+  if (!isAdmin) { return null; }
 
   const handleTitleChange = (title: string) => {
     const slug = title.toLowerCase().replace(/[^a-z0-9\s-]/g, "").replace(/\s+/g, "-").replace(/-+/g, "-");
