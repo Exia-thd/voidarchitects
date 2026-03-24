@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Void Architects
 
-## Getting Started
+Website của studio kiến trúc **Void Architects** — xây dựng bằng Next.js + Tailwind CSS.
 
-First, run the development server:
+## Tính năng
+
+- Trang chủ, About, Projects, Journal (blog)
+- **Admin Mode** — quản lý bài viết (thêm, sửa, xoá, publish/unpublish)
+- Dữ liệu lưu trong localStorage (persist qua reload)
+- Dark minimalist design
+
+## Chạy local
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Mở [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Admin
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Vào `/admin` và đăng nhập bằng password:
 
-## Learn More
+```
+voidarchitects2024
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Deploy lên GitHub Pages
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Vào **Settings → Pages** của repo
+2. Chọn **Source: GitHub Actions**
+3. Push lên branch `main` → workflow tự chạy và deploy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+URL sau khi deploy: `https://<username>.github.io/voidarchitects/`
 
-## Deploy on Vercel
+## Deploy lên Vercel (dễ hơn)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npx vercel
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Không cần set `NEXT_PUBLIC_BASE_PATH` khi dùng Vercel.
+
+## Stack
+
+- [Next.js 16](https://nextjs.org/)
+- [Tailwind CSS v4](https://tailwindcss.com/)
+- [Zustand](https://zustand-demo.pmnd.rs/) — state management
